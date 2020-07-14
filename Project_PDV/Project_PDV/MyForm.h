@@ -6,6 +6,7 @@ namespace ProjectPDV {
 
 	using namespace System;
 	using namespace System::ComponentModel;
+	
 	using namespace System::Collections;
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
@@ -40,7 +41,7 @@ namespace ProjectPDV {
 		}
 	private: System::Windows::Forms::Panel^  panelMenu;
 	private: System::Windows::Forms::Button^  btnResults;
-
+			 
 	private: System::Windows::Forms::Button^  btnClient;
 
 
@@ -62,6 +63,7 @@ namespace ProjectPDV {
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Panel^  panelDesktopPanel;
 	private: System::Windows::Forms::Button^  btnConfg;
+
 
 
 	protected:
@@ -170,7 +172,7 @@ namespace ProjectPDV {
 			this->btnClient->Padding = System::Windows::Forms::Padding(12, 0, 0, 0);
 			this->btnClient->Size = System::Drawing::Size(220, 60);
 			this->btnClient->TabIndex = 5;
-			this->btnClient->Text = L"   Clientes";
+			this->btnClient->Text = L" Clientes";
 			this->btnClient->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->btnClient->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnClient->UseVisualStyleBackColor = true;
@@ -230,7 +232,7 @@ namespace ProjectPDV {
 			this->btnProducts->Padding = System::Windows::Forms::Padding(12, 0, 0, 0);
 			this->btnProducts->Size = System::Drawing::Size(220, 60);
 			this->btnProducts->TabIndex = 2;
-			this->btnProducts->Text = L"   Productos";
+			this->btnProducts->Text = L"   Inventario";
 			this->btnProducts->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->btnProducts->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnProducts->UseVisualStyleBackColor = true;
@@ -289,6 +291,9 @@ namespace ProjectPDV {
 			this->panelTitleBar->Name = L"panelTitleBar";
 			this->panelTitleBar->Size = System::Drawing::Size(748, 80);
 			this->panelTitleBar->TabIndex = 1;
+			this->panelTitleBar->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::panelTitleBar_MouseDown);
+			this->panelTitleBar->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::panelTitleBar_MouseMove);
+			this->panelTitleBar->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::panelTitleBar_MouseUp);
 			// 
 			// lblTitle
 			// 
@@ -299,10 +304,13 @@ namespace ProjectPDV {
 			this->lblTitle->ForeColor = System::Drawing::Color::White;
 			this->lblTitle->Location = System::Drawing::Point(375, 29);
 			this->lblTitle->Name = L"lblTitle";
-			this->lblTitle->Size = System::Drawing::Size(76, 25);
+			this->lblTitle->Size = System::Drawing::Size(71, 25);
 			this->lblTitle->TabIndex = 0;
-			this->lblTitle->Text = L"Home";
+			this->lblTitle->Text = L"Inicio";
 			this->lblTitle->TextChanged += gcnew System::EventHandler(this, &MyForm::lblTitle_TextChanged);
+			this->lblTitle->MouseDown += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::lblTitle_MouseDown);
+			this->lblTitle->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::lblTitle_MouseMove);
+			this->lblTitle->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::lblTitle_MouseUp);
 			// 
 			// panelDesktopPanel
 			// 
@@ -336,6 +344,9 @@ namespace ProjectPDV {
 	private: Button ^currentButton = (gcnew System::Windows::Forms::Button());
 	private: int tempIndex;
 	private: Form^activateForm;
+	private: bool clic;
+	private: Point punto;
+
 	private: Color SelectThemeColor() {
 	
 
@@ -399,7 +410,11 @@ namespace ProjectPDV {
 	}
 
 
-	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) 
+	{
+		btnHome->PerformClick();
+		this->Text = "";
+		this->ControlBox = false;
 	}
 private: System::Void btnProducts_Click(System::Object^  sender, System::EventArgs^  e) 
 {
@@ -438,5 +453,32 @@ private: System::Void lblTitle_TextChanged(System::Object^  sender, System::Even
 }
 
 
+
+
+private: System::Void panelTitleBar_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
+{
+	clic = true;
+	punto =  Point(e->X, e->Y);
+	Cursor = Cursors::SizeAll;
+}
+private: System::Void panelTitleBar_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
+{
+	clic = false;
+	Cursor = Cursors::Default;
+}
+private: System::Void panelTitleBar_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
+{
+	if (clic)
+	{
+		this->Location = System::Drawing::Point(this->Location.X + (e->Location.X - punto.X), this->Location.Y + (e->Location.Y - punto.Y));
+		
+	}
+}
+private: System::Void lblTitle_MouseDown(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+}
+private: System::Void lblTitle_MouseMove(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+}
+private: System::Void lblTitle_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
+}
 };
 }

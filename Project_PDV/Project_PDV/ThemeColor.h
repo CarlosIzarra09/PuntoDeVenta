@@ -4,8 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <string>
-//#include <windef.h>
-
 
 class ThemeColor
 {
@@ -76,6 +74,9 @@ public:
 		return System::Drawing::Color::FromArgb(color.A, (unsigned char)red, (unsigned char)green, (unsigned char)blue);
 	}
 
+	 
+
+	
 };
 
 
