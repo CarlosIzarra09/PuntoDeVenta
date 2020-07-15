@@ -1,6 +1,13 @@
 #pragma once
 #include "ThemeColor.h"
 #include "FormProduct.h"
+#include "Clientes.h"
+#include "Empleados.h"
+#include "Inicio.h"
+#include "Ordenes.h"
+#include "Pagos.h"
+#include "Reportes.h"
+
 
 namespace ProjectPDV {
 
@@ -63,6 +70,14 @@ namespace ProjectPDV {
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Panel^  panelDesktopPanel;
 	private: System::Windows::Forms::Button^  btnConfg;
+	private: System::Windows::Forms::Button^  btnClose;
+	private: System::Windows::Forms::Button^  btnMin;
+
+	private: System::Windows::Forms::Button^  btnMax;
+	private: System::Windows::Forms::Panel^  panel1;
+
+
+
 
 
 
@@ -94,10 +109,15 @@ namespace ProjectPDV {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->panelTitleBar = (gcnew System::Windows::Forms::Panel());
 			this->lblTitle = (gcnew System::Windows::Forms::Label());
+			this->btnMin = (gcnew System::Windows::Forms::Button());
+			this->btnMax = (gcnew System::Windows::Forms::Button());
+			this->btnClose = (gcnew System::Windows::Forms::Button());
 			this->panelDesktopPanel = (gcnew System::Windows::Forms::Panel());
+			this->panel1 = (gcnew System::Windows::Forms::Panel());
 			this->panelMenu->SuspendLayout();
 			this->panelLogo->SuspendLayout();
 			this->panelTitleBar->SuspendLayout();
+			this->panel1->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panelMenu
@@ -113,9 +133,9 @@ namespace ProjectPDV {
 			this->panelMenu->Controls->Add(this->btnHome);
 			this->panelMenu->Controls->Add(this->panelLogo);
 			this->panelMenu->Dock = System::Windows::Forms::DockStyle::Left;
-			this->panelMenu->Location = System::Drawing::Point(0, 0);
+			this->panelMenu->Location = System::Drawing::Point(0, 30);
 			this->panelMenu->Name = L"panelMenu";
-			this->panelMenu->Size = System::Drawing::Size(220, 581);
+			this->panelMenu->Size = System::Drawing::Size(220, 551);
 			this->panelMenu->TabIndex = 0;
 			// 
 			// btnConfg
@@ -129,10 +149,10 @@ namespace ProjectPDV {
 			this->btnConfg->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->btnConfg->Location = System::Drawing::Point(0, 440);
 			this->btnConfg->Name = L"btnConfg";
-			this->btnConfg->Padding = System::Windows::Forms::Padding(12, 0, 0, 0);
+			this->btnConfg->Padding = System::Windows::Forms::Padding(3, 0, 0, 0);
 			this->btnConfg->Size = System::Drawing::Size(220, 60);
 			this->btnConfg->TabIndex = 7;
-			this->btnConfg->Text = L"   Configuracion";
+			this->btnConfg->Text = L" Pagos";
 			this->btnConfg->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->btnConfg->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnConfg->UseVisualStyleBackColor = true;
@@ -152,7 +172,7 @@ namespace ProjectPDV {
 			this->btnResults->Padding = System::Windows::Forms::Padding(12, 0, 0, 0);
 			this->btnResults->Size = System::Drawing::Size(220, 60);
 			this->btnResults->TabIndex = 6;
-			this->btnResults->Text = L"   Finanzas";
+			this->btnResults->Text = L"   Reportes";
 			this->btnResults->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->btnResults->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnResults->UseVisualStyleBackColor = true;
@@ -192,7 +212,7 @@ namespace ProjectPDV {
 			this->btnPersonal->Padding = System::Windows::Forms::Padding(12, 0, 0, 0);
 			this->btnPersonal->Size = System::Drawing::Size(220, 60);
 			this->btnPersonal->TabIndex = 4;
-			this->btnPersonal->Text = L"   Personal";
+			this->btnPersonal->Text = L"   Empleados";
 			this->btnPersonal->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			this->btnPersonal->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnPersonal->UseVisualStyleBackColor = true;
@@ -287,7 +307,7 @@ namespace ProjectPDV {
 				static_cast<System::Int32>(static_cast<System::Byte>(136)));
 			this->panelTitleBar->Controls->Add(this->lblTitle);
 			this->panelTitleBar->Dock = System::Windows::Forms::DockStyle::Top;
-			this->panelTitleBar->Location = System::Drawing::Point(220, 0);
+			this->panelTitleBar->Location = System::Drawing::Point(220, 30);
 			this->panelTitleBar->Name = L"panelTitleBar";
 			this->panelTitleBar->Size = System::Drawing::Size(748, 80);
 			this->panelTitleBar->TabIndex = 1;
@@ -312,13 +332,85 @@ namespace ProjectPDV {
 			this->lblTitle->MouseMove += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::lblTitle_MouseMove);
 			this->lblTitle->MouseUp += gcnew System::Windows::Forms::MouseEventHandler(this, &MyForm::lblTitle_MouseUp);
 			// 
+			// btnMin
+			// 
+			this->btnMin->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->btnMin->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnMin->FlatAppearance->BorderSize = 0;
+			this->btnMin->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnMin->Font = (gcnew System::Drawing::Font(L"Montserrat", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnMin->ForeColor = System::Drawing::Color::Gold;
+			this->btnMin->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->btnMin->Location = System::Drawing::Point(878, 0);
+			this->btnMin->Margin = System::Windows::Forms::Padding(0);
+			this->btnMin->Name = L"btnMin";
+			this->btnMin->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->btnMin->Size = System::Drawing::Size(30, 30);
+			this->btnMin->TabIndex = 3;
+			this->btnMin->Text = L"O";
+			this->btnMin->UseVisualStyleBackColor = true;
+			this->btnMin->Click += gcnew System::EventHandler(this, &MyForm::btnMin_Click);
+			// 
+			// btnMax
+			// 
+			this->btnMax->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->btnMax->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnMax->FlatAppearance->BorderSize = 0;
+			this->btnMax->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnMax->Font = (gcnew System::Drawing::Font(L"Montserrat", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnMax->ForeColor = System::Drawing::Color::LimeGreen;
+			this->btnMax->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->btnMax->Location = System::Drawing::Point(908, 0);
+			this->btnMax->Margin = System::Windows::Forms::Padding(0);
+			this->btnMax->Name = L"btnMax";
+			this->btnMax->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->btnMax->Size = System::Drawing::Size(30, 30);
+			this->btnMax->TabIndex = 2;
+			this->btnMax->Text = L"O";
+			this->btnMax->UseVisualStyleBackColor = true;
+			this->btnMax->Click += gcnew System::EventHandler(this, &MyForm::btnMax_Click);
+			// 
+			// btnClose
+			// 
+			this->btnClose->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->btnClose->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnClose->FlatAppearance->BorderSize = 0;
+			this->btnClose->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnClose->Font = (gcnew System::Drawing::Font(L"Montserrat", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnClose->ForeColor = System::Drawing::Color::Red;
+			this->btnClose->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
+			this->btnClose->Location = System::Drawing::Point(938, 0);
+			this->btnClose->Margin = System::Windows::Forms::Padding(0);
+			this->btnClose->Name = L"btnClose";
+			this->btnClose->RightToLeft = System::Windows::Forms::RightToLeft::No;
+			this->btnClose->Size = System::Drawing::Size(30, 30);
+			this->btnClose->TabIndex = 1;
+			this->btnClose->Text = L"O";
+			this->btnClose->UseVisualStyleBackColor = true;
+			this->btnClose->Click += gcnew System::EventHandler(this, &MyForm::btnClose_Click);
+			// 
 			// panelDesktopPanel
 			// 
 			this->panelDesktopPanel->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->panelDesktopPanel->Location = System::Drawing::Point(220, 80);
+			this->panelDesktopPanel->Location = System::Drawing::Point(220, 110);
 			this->panelDesktopPanel->Name = L"panelDesktopPanel";
-			this->panelDesktopPanel->Size = System::Drawing::Size(748, 501);
+			this->panelDesktopPanel->Size = System::Drawing::Size(748, 471);
 			this->panelDesktopPanel->TabIndex = 2;
+			// 
+			// panel1
+			// 
+			this->panel1->BackColor = System::Drawing::SystemColors::InactiveCaptionText;
+			this->panel1->Controls->Add(this->btnMin);
+			this->panel1->Controls->Add(this->btnClose);
+			this->panel1->Controls->Add(this->btnMax);
+			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
+			this->panel1->Location = System::Drawing::Point(0, 0);
+			this->panel1->Name = L"panel1";
+			this->panel1->Size = System::Drawing::Size(968, 30);
+			this->panel1->TabIndex = 3;
 			// 
 			// MyForm
 			// 
@@ -328,6 +420,8 @@ namespace ProjectPDV {
 			this->Controls->Add(this->panelDesktopPanel);
 			this->Controls->Add(this->panelTitleBar);
 			this->Controls->Add(this->panelMenu);
+			this->Controls->Add(this->panel1);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"MyForm";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm";
@@ -337,6 +431,7 @@ namespace ProjectPDV {
 			this->panelLogo->PerformLayout();
 			this->panelTitleBar->ResumeLayout(false);
 			this->panelTitleBar->PerformLayout();
+			this->panel1->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -413,7 +508,6 @@ namespace ProjectPDV {
 	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) 
 	{
 		btnHome->PerformClick();
-		this->Text = "";
 		this->ControlBox = false;
 	}
 private: System::Void btnProducts_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -424,28 +518,34 @@ private: System::Void btnProducts_Click(System::Object^  sender, System::EventAr
 
 private: System::Void btnOrders_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	ActivateButton(sender);
+	OpenChildForm(gcnew Ordenes(), sender);
+	
 }
 private: System::Void btnPersonal_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	ActivateButton(sender);
+	OpenChildForm(gcnew Empleados(), sender);
+	
 }
 
 private: System::Void btnClient_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	ActivateButton(sender);
+	OpenChildForm(gcnew Clientes(), sender);
+	
 }
 private: System::Void btnResults_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	ActivateButton(sender);
+	OpenChildForm(gcnew Reportes(), sender);
+	
 }
 private: System::Void btnConfg_Click(System::Object^  sender, System::EventArgs^  e) 
 {
-	ActivateButton(sender);
+	OpenChildForm(gcnew Pagos(), sender);
+	
 }
 private: System::Void btnHome_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	ActivateButton(sender);
+	OpenChildForm(gcnew Inicio(), sender);
+	
 }
 private: System::Void lblTitle_TextChanged(System::Object^  sender, System::EventArgs^  e)
 {
@@ -480,5 +580,25 @@ private: System::Void lblTitle_MouseMove(System::Object^  sender, System::Window
 }
 private: System::Void lblTitle_MouseUp(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) {
 }
+private: System::Void btnClose_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	this->Close();
+}
+private: System::Void btnMax_Click(System::Object^  sender, System::EventArgs^  e)
+{
+	if (this->WindowState == System::Windows::Forms::FormWindowState::Normal)
+	{
+		this->WindowState = System::Windows::Forms::FormWindowState::Maximized;
+	}
+	else
+	{
+		this->WindowState = System::Windows::Forms::FormWindowState::Normal;
+	}
+}
+private: System::Void btnMin_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	this->WindowState = System::Windows::Forms::FormWindowState::Minimized;
+}
+
 };
 }
