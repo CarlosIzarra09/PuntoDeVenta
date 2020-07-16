@@ -25,8 +25,7 @@ namespace ProjectPDV {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 		ThemeColor*object;
-		SqlConnection^cn;
-		SqlConnectionStringBuilder^str;
+		
 	public:
 		MyForm(void)
 		{
@@ -512,17 +511,12 @@ namespace ProjectPDV {
 		btnHome->PerformClick();
 		this->ControlBox = false;
 
-		//Inicializamos conexion con la base de datos
-		str = gcnew SqlConnectionStringBuilder();
-		str->DataSource = "EDUARDO-PC\SQLEXPRESS";
-		str->InitialCatalog = "";
-		str->IntegratedSecurity = true;
-		cn = gcnew SqlConnection(Convert::ToString(str));
+		
 	}
 private: System::Void btnProducts_Click(System::Object^  sender, System::EventArgs^  e) 
 {
 	OpenChildForm(gcnew FormProduct(), sender);
-	((FormProduct^)activateForm)->Get_DB(cn);
+	//((FormProduct^)activateForm)->Get_DB(str);
 }
 
 private: System::Void btnOrders_Click(System::Object^  sender, System::EventArgs^  e) 

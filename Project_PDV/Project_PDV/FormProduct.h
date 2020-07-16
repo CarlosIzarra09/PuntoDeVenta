@@ -16,7 +16,8 @@ namespace ProjectPDV {
 	public ref class FormProduct : public System::Windows::Forms::Form
 	{
 		
-		SqlConnection^cnlocal;
+		SqlConnection^cn;
+		SqlConnectionStringBuilder^str;
 	public:
 		FormProduct(void)
 		{
@@ -38,12 +39,13 @@ namespace ProjectPDV {
 			}
 		}
 	private: System::Windows::Forms::DataGridView^  dataGridView1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column1;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column4;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column5;
-	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  btnEdit;
+
+
+
+
+
+
 	private: System::Windows::Forms::Label^  lbl1;
 	private: System::Windows::Forms::ComboBox^  comboBox1;
 	private: System::Windows::Forms::ComboBox^  comboBox2;
@@ -79,14 +81,10 @@ namespace ProjectPDV {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			System::Windows::Forms::DataGridViewCellStyle^  dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(FormProduct::typeid));
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
-			this->Column1 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column2 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column3 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->btnEdit = (gcnew System::Windows::Forms::Button());
 			this->lbl1 = (gcnew System::Windows::Forms::Label());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->comboBox2 = (gcnew System::Windows::Forms::ComboBox());
@@ -102,64 +100,43 @@ namespace ProjectPDV {
 			this->dataGridView1->AllowUserToDeleteRows = false;
 			this->dataGridView1->AllowUserToResizeColumns = false;
 			this->dataGridView1->AllowUserToResizeRows = false;
-			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::ControlLight;
+			this->dataGridView1->BackgroundColor = System::Drawing::Color::Gainsboro;
 			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(5) {
-				this->Column1,
-					this->Column2, this->Column3, this->Column4, this->Column5
-			});
 			this->dataGridView1->Location = System::Drawing::Point(30, 228);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(690, 150);
+			this->dataGridView1->ReadOnly = true;
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Montserrat", 8.249999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView1->RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+			this->dataGridView1->Size = System::Drawing::Size(690, 230);
 			this->dataGridView1->TabIndex = 0;
 			// 
-			// Column1
+			// btnEdit
 			// 
-			this->Column1->HeaderText = L"ID";
-			this->Column1->Name = L"Column1";
-			// 
-			// Column2
-			// 
-			this->Column2->HeaderText = L"Nombre";
-			this->Column2->Name = L"Column2";
-			this->Column2->Width = 200;
-			// 
-			// Column3
-			// 
-			this->Column3->HeaderText = L"Precio";
-			this->Column3->Name = L"Column3";
-			// 
-			// Column4
-			// 
-			this->Column4->HeaderText = L"Categoría";
-			this->Column4->Name = L"Column4";
-			this->Column4->Width = 200;
-			// 
-			// Column5
-			// 
-			this->Column5->HeaderText = L"Stock ";
-			this->Column5->Name = L"Column5";
-			this->Column5->Width = 50;
-			// 
-			// button1
-			// 
-			this->button1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->button1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button1->FlatAppearance->BorderSize = 0;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Montserrat", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnEdit->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->btnEdit->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->btnEdit->FlatAppearance->BorderSize = 0;
+			this->btnEdit->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->btnEdit->Font = (gcnew System::Drawing::Font(L"Montserrat", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->button1->ForeColor = System::Drawing::Color::White;
-			this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
-			this->button1->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->button1->Location = System::Drawing::Point(594, 41);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(126, 42);
-			this->button1->TabIndex = 1;
-			this->button1->Text = L"  Editar";
-			this->button1->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
-			this->button1->UseVisualStyleBackColor = false;
+			this->btnEdit->ForeColor = System::Drawing::Color::White;
+			this->btnEdit->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnEdit.Image")));
+			this->btnEdit->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->btnEdit->Location = System::Drawing::Point(594, 41);
+			this->btnEdit->Name = L"btnEdit";
+			this->btnEdit->Size = System::Drawing::Size(126, 42);
+			this->btnEdit->TabIndex = 1;
+			this->btnEdit->Text = L"  Editar";
+			this->btnEdit->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->btnEdit->UseVisualStyleBackColor = false;
+			this->btnEdit->Click += gcnew System::EventHandler(this, &FormProduct::btnEdit_Click);
 			// 
 			// lbl1
 			// 
@@ -230,7 +207,7 @@ namespace ProjectPDV {
 			this->textBox1->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->textBox1->Font = (gcnew System::Drawing::Font(L"Montserrat", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox1->Location = System::Drawing::Point(157, 147);
+			this->textBox1->Location = System::Drawing::Point(157, 150);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(70, 20);
 			this->textBox1->TabIndex = 7;
@@ -247,7 +224,7 @@ namespace ProjectPDV {
 			this->Controls->Add(this->lbl2);
 			this->Controls->Add(this->comboBox1);
 			this->Controls->Add(this->lbl1);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->btnEdit);
 			this->Controls->Add(this->dataGridView1);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"FormProduct";
@@ -272,12 +249,12 @@ private: System::Void FormProduct_SizeChanged(System::Object^  sender, System::E
 	this->dataGridView1->Columns[0]->Width = (this->dataGridView1->Width*100)/690;
 	this->dataGridView1->Columns[1]->Width = (this->dataGridView1->Width * 200) / 690;
 	this->dataGridView1->Columns[2]->Width = (this->dataGridView1->Width * 100) / 690;
-	this->dataGridView1->Columns[3]->Width = (this->dataGridView1->Width * 200) / 690;
-	this->dataGridView1->Columns[4]->Width = (this->dataGridView1->Width * 70) / 690;
+	this->dataGridView1->Columns[3]->Width = (this->dataGridView1->Width * 100) / 690;
+	this->dataGridView1->Columns[4]->Width = (this->dataGridView1->Width * 170) / 690;
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
 {
-	button1->Focus();
+	btnEdit->Focus();
 	comboBox2->Items->Clear();
 	switch (comboBox1->SelectedIndex)
 	{
@@ -286,11 +263,13 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 		comboBox2->Items->Add(L"Piernita");
 		comboBox2->Items->Add(L"Pecho");
 		comboBox2->Items->Add(L"Filete de pollo");
-		comboBox2->Items->Add(L"Salchipapa"); break;
+		comboBox2->Items->Add(L"Salchipapa");
+		 break;
 	case 1:
 		comboBox2->Items->Add(L"De Pollo");
 		comboBox2->Items->Add(L"De Carne");
-		comboBox2->Items->Add(L"Broaster"); break;
+		comboBox2->Items->Add(L"Broaster");
+		 break;
 	case 2:
 		comboBox2->Items->Add("1 1/2 L INKA");
 		comboBox2->Items->Add("1 1/2 L COCA");
@@ -304,28 +283,98 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 		comboBox2->Items->Add("1/2 L Guaraná");
 		comboBox2->Items->Add("Pepsi J.");
 		comboBox2->Items->Add("Esporade");
-		comboBox2->Items->Add("Agua Cielo"); break;
-		case 3:
+		comboBox2->Items->Add("Agua Cielo");
+		 break;
+	case 3:
 		comboBox2->Items->Add(L"Gelatina");
-		comboBox2->Items->Add(L"Gelatina con flan");break;
+		comboBox2->Items->Add(L"Gelatina con flan");
+		 break;
 	}
-
+	comboBox2->SelectedIndex = 0;
+	Actualizar_DGV();
 }
 
-public: void Get_DB(SqlConnection^cn)
+private: void Actualizar_DGV()
 {
-	cnlocal = cn;
+	switch (comboBox1->SelectedIndex)
+	{
+	case 0:CargarRegistros("Select * from Product p where p.CategoryID = 1"); break;
+	case 1:CargarRegistros("Select * from Product p where p.CategoryID = 2"); break;
+	case 2:CargarRegistros("Select * from Product p where p.CategoryID = 3"); break;
+	case 3:CargarRegistros("Select * from Product p where p.CategoryID = 5"); break;
+	}
 }
 
 private: System::Void FormProduct_Load(System::Object^  sender, System::EventArgs^  e) 
 {
-	comboBox1->SelectedIndex = 0;
-	comboBox2->SelectedIndex = 0;
+	
+	
+	//Inicializamos conexion con la base de datos
+	str = gcnew SqlConnectionStringBuilder();
+	str->DataSource = "EDUARDO-PC\\SQLEXPRESS";
+	str->InitialCatalog = "DSONIA_BD";
+	str->IntegratedSecurity = true;
+	cn = gcnew SqlConnection(Convert::ToString(str));
+	CargarRegistros("Select*from dbo.Product");
+}
 
+
+private: void CargarRegistros(String^Comando)
+{
+	SqlCommand^cmdDatabase = gcnew SqlCommand(Comando, cn);
+	
+	try
+	{
+		SqlDataAdapter^ sda = gcnew SqlDataAdapter();
+
+		if (Comando->Substring(0, 6) == "Select")
+		{
+			sda->SelectCommand = cmdDatabase;
+
+
+			DataTable^ dbaDataSet = gcnew DataTable();
+			sda->Fill(dbaDataSet);
+			BindingSource^ bSource = gcnew BindingSource();
+			bSource->DataSource = dbaDataSet;
+			dataGridView1->DataSource = bSource;
+			sda->Update(dbaDataSet);
+		}
+		if (Comando->Substring(0, 6) == "Update")
+		{
+			cn->Open();
+			cmdDatabase->ExecuteNonQuery();
+			cn->Close();
+		}
+	}
+	catch (Exception^ex)
+	{
+		MessageBox::Show(ex->Message);
+	}
+
+	dataGridView1->Columns[0]->HeaderText = "ID";
+	dataGridView1->Columns[1]->HeaderText = "Nombre del producto";
+	dataGridView1->Columns[2]->HeaderText = "Precio S/";
+	dataGridView1->Columns[3]->HeaderText = "Stock disponible";
+	dataGridView1->Columns[4]->HeaderText = "Categoria";
 }
 private: System::Void comboBox2_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e)
 {
 	textBox1->Focus();
+
+}
+private: System::Void btnEdit_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	
+	if (textBox1->Text == " " || textBox1->Text == "")
+	{
+		MessageBox::Show("Por favor ingrese la cantidad");
+	}
+	
+	else
+	{
+		CargarRegistros("Update Product Set UnitInStock = " +textBox1->Text+ " where ProductName = '"+ comboBox2->Text+"'");
+		Actualizar_DGV();
+	}
 }
 };
 }
