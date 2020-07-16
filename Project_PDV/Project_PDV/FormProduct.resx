@@ -117,4 +117,59 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column1.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column2.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column3.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column4.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="Column5.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="button1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACUAAAAZCAYAAAC2JufVAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
+        JQAAgIMAAPn/AACA6QAAdTAAAOpgAAA6mAAAF2+SX8VGAAAACXBIWXMAAB7CAAAewgFu0HU+AAAAB3RJ
+        TUUH5AcQAAk3ykdm/QAAA+dJREFUSEvNlslLXFkUh08o3HWyzz+QpnehaVxk6Sa0rqQrEnAgDghCO4A4
+        4KZXLWLHCnQMCc7zhKA4z+U8EXGeB5wQwYig0Ti//v0u9R71Wk3KQkkefNzi1Hv3fu/cc+99omnaD8eV
+        QFlZmUFBQYGUlJTIzMxM6OHhYc7x8XHW0dFRhrucnZ3l7u3t/Z2SkvLI09NTvL29xcfHx0B3MAmRqqoq
+        RXV1teTn58vg4GAo4nd6LS0t9cTExFji4uIkKSnJAH8pTEKkqKhIkZeXJ7m5uZaTk5MjxLXu7u7CioqK
+        5Pb2dltra+utaWxs/Acv+xqZWmd/ExMTvnx5/GfA8YlJiGRmZirS09Mp9fDy8hJh7Ry/xcvLS6xWqwQF
+        BUlAQIBLBAYGir+/v5qesLAwWVhYSGWHKIlIivT29hpwfGISIoWFhYqcnBxm7KfT01MNYuc7OzsP8LYS
+        HBwskZGRkpiYKPHx8V8lISFBOEXh4eFis9mEz6+urr7FONrU1FRoW1ub9PX1GegOJiHC4iZZWVmUM6Tm
+        5uY89vf3paGhwSUxZ6G0tDQ1KOsUmXqHcbTJycnQlpYW6enpMdAdTELkJqnp6WmPxcVFOTg4+KbYdULM
+        Snl5uaCPu5NCDXggW4KVY4iFhIRIRESEYCVJdHS0gr+joqKMKdOFeD8Wyt1Lzc/PC3EWowSz5by0Y2Nj
+        VYawYgWrVd3Hero3KdSEEkPBKvr7+9XKYUuYmYGBARkeHlYidXV1qr13qZWVFcHq4cYqY2NjMj4+fgXG
+        OVBtba3U19ffn5SzELMxNDSkMnITo6OjJrF7kVpeXnZZSMdZjOep21KQkezsbLV54phBWDtHcT9AR7cS
+        0tHFSktLOf3G5um8o7Nfjk9MQoSHMI8UZgqdPERMw+l+brfbpaOjQ9h2dXVJZ2eny/B+LgJmCi+mjpnZ
+        2dk/uVVQhlLNzc2Gg0mI8EG+UUZGBo8ay8XFxRfAk71kbW3t342NjQ9u8h71+A5biTqQIflHcXGx1NTU
+        qK8S/tYdTEKksrJSHQc8lLlrozhfIX6n1+7urh1fIRaWCb/XmATu9vhLYRIirCVOHx9ITU2V5ORkpv4x
+        Ct0PW8JLpP2FO+BZP5wI/ujrGWeDXyEcS4flojuYhAhqwA818AKtFfuQFfPt29TU9BRF+QT8fAPPgK+D
+        3x0xE6gftk+wu/+C9jkK34pxrBwHvAS/6g5XpIA71yZ4A2yghgE3rnqgHP4vJCxqN649UOTAzsBtLyyE
+        v9BcLzUyMvIbbije2toa2d7eJh9dYBl8dvDJEfsmGGN0fX29dXNzMxwr0KI7XJH6Ebg2+H3R5D/kDuf9
+        CoSntAAAAABJRU5ErkJggg==
+</value>
+  </data>
 </root>

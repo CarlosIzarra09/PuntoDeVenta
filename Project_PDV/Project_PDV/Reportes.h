@@ -57,7 +57,7 @@ namespace ProjectPDV {
 			this->ClientSize = System::Drawing::Size(748, 470);
 			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::None;
 			this->Name = L"Reportes";
-			this->Text = L"Reportes";
+			this->Text = L"REPORTES";
 			this->ResumeLayout(false);
 
 		}

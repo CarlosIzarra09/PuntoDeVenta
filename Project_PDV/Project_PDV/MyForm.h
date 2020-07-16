@@ -25,6 +25,8 @@ namespace ProjectPDV {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 		ThemeColor*object;
+		SqlConnection^cn;
+		SqlConnectionStringBuilder^str;
 	public:
 		MyForm(void)
 		{
@@ -293,11 +295,11 @@ namespace ProjectPDV {
 			// 
 			this->label1->AutoSize = true;
 			this->label1->Cursor = System::Windows::Forms::Cursors::Default;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Bukhari Script", 14));
+			this->label1->Font = (gcnew System::Drawing::Font(L"Bukhari Script", 16));
 			this->label1->ForeColor = System::Drawing::Color::LightGray;
-			this->label1->Location = System::Drawing::Point(64, 9);
+			this->label1->Location = System::Drawing::Point(54, 3);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(93, 60);
+			this->label1->Size = System::Drawing::Size(109, 72);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"D \'Sonia \r\nBroaster ";
 			// 
@@ -441,7 +443,7 @@ namespace ProjectPDV {
 	private: Form^activateForm;
 	private: bool clic;
 	private: Point punto;
-
+	
 	private: Color SelectThemeColor() {
 	
 
@@ -509,11 +511,18 @@ namespace ProjectPDV {
 	{
 		btnHome->PerformClick();
 		this->ControlBox = false;
+
+		//Inicializamos conexion con la base de datos
+		str = gcnew SqlConnectionStringBuilder();
+		str->DataSource = "EDUARDO-PC\SQLEXPRESS";
+		str->InitialCatalog = "";
+		str->IntegratedSecurity = true;
+		cn = gcnew SqlConnection(Convert::ToString(str));
 	}
 private: System::Void btnProducts_Click(System::Object^  sender, System::EventArgs^  e) 
 {
 	OpenChildForm(gcnew FormProduct(), sender);
-
+	((FormProduct^)activateForm)->Get_DB(cn);
 }
 
 private: System::Void btnOrders_Click(System::Object^  sender, System::EventArgs^  e) 
@@ -545,13 +554,12 @@ private: System::Void btnConfg_Click(System::Object^  sender, System::EventArgs^
 private: System::Void btnHome_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	OpenChildForm(gcnew Inicio(), sender);
-	
+		
 }
 private: System::Void lblTitle_TextChanged(System::Object^  sender, System::EventArgs^  e)
 {
-	lblTitle->Location = System::Drawing::Point((panelTitleBar->Width - lblTitle->Width) / 2, 29);
+	lblTitle->Location = System::Drawing::Point(panelTitleBar->Width/2 - lblTitle->Width/2, 29);
 }
-
 
 
 
