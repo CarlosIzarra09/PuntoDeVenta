@@ -5,10 +5,14 @@
 #include <vector>
 #include <string>
 
-class ThemeColor
+
+
+
+ class ThemeColor
 {
 private:
 	std::vector <std::string> ColorList;
+	
 public:
 	ThemeColor() 
 	{
@@ -48,6 +52,7 @@ public:
 		return ColorList;
 	}
 
+	
 
 	 System::Drawing::Color ChangeColorBrightness(System::Drawing::Color color, double correctionFactor)
 	{

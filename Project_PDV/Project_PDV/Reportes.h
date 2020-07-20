@@ -62,5 +62,9 @@ namespace ProjectPDV {
 
 		}
 #pragma endregion
+	public: void LoadTheme(Color primary, Color secondary)
+	{
+		
+	}
 	};
 }

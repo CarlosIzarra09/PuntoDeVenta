@@ -100,10 +100,12 @@ namespace ProjectPDV {
 			this->dataGridView1->AllowUserToDeleteRows = false;
 			this->dataGridView1->AllowUserToResizeColumns = false;
 			this->dataGridView1->AllowUserToResizeRows = false;
-			this->dataGridView1->BackgroundColor = System::Drawing::Color::Gainsboro;
+			this->dataGridView1->Anchor = static_cast<System::Windows::Forms::AnchorStyles>(((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Left)
+				| System::Windows::Forms::AnchorStyles::Right));
+			this->dataGridView1->BackgroundColor = System::Drawing::SystemColors::Control;
 			this->dataGridView1->BorderStyle = System::Windows::Forms::BorderStyle::None;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(30, 228);
+			this->dataGridView1->Location = System::Drawing::Point(12, 228);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
 			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
@@ -115,11 +117,12 @@ namespace ProjectPDV {
 			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
 			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
 			this->dataGridView1->RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-			this->dataGridView1->Size = System::Drawing::Size(690, 230);
+			this->dataGridView1->Size = System::Drawing::Size(724, 400);
 			this->dataGridView1->TabIndex = 0;
 			// 
 			// btnEdit
 			// 
+			this->btnEdit->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->btnEdit->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
 			this->btnEdit->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->btnEdit->FlatAppearance->BorderSize = 0;
@@ -129,11 +132,11 @@ namespace ProjectPDV {
 			this->btnEdit->ForeColor = System::Drawing::Color::White;
 			this->btnEdit->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnEdit.Image")));
 			this->btnEdit->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->btnEdit->Location = System::Drawing::Point(594, 41);
+			this->btnEdit->Location = System::Drawing::Point(580, 41);
 			this->btnEdit->Name = L"btnEdit";
-			this->btnEdit->Size = System::Drawing::Size(126, 42);
+			this->btnEdit->Size = System::Drawing::Size(140, 42);
 			this->btnEdit->TabIndex = 1;
-			this->btnEdit->Text = L"  Editar";
+			this->btnEdit->Text = L"  Corregir";
 			this->btnEdit->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnEdit->UseVisualStyleBackColor = false;
 			this->btnEdit->Click += gcnew System::EventHandler(this, &FormProduct::btnEdit_Click);
@@ -238,6 +241,10 @@ namespace ProjectPDV {
 
 		}
 #pragma endregion
+public: void LoadTheme(Color primary, Color secondary)
+{
+	
+}
 	private: System::Void FormProduct_MaximizedBoundsChanged(System::Object^  sender, System::EventArgs^  e) 
 	{
 
@@ -245,12 +252,14 @@ namespace ProjectPDV {
 private: System::Void FormProduct_SizeChanged(System::Object^  sender, System::EventArgs^  e) 
 {
 	
-	this->dataGridView1->Width = this->Width - 60;
+	//this->dataGridView1->Width = this->Width - 24;
+	this->dataGridView1->Height = this->Height - 240;
 	this->dataGridView1->Columns[0]->Width = (this->dataGridView1->Width*100)/690;
 	this->dataGridView1->Columns[1]->Width = (this->dataGridView1->Width * 200) / 690;
 	this->dataGridView1->Columns[2]->Width = (this->dataGridView1->Width * 100) / 690;
 	this->dataGridView1->Columns[3]->Width = (this->dataGridView1->Width * 100) / 690;
-	this->dataGridView1->Columns[4]->Width = (this->dataGridView1->Width * 170) / 690;
+	this->dataGridView1->Columns[4]->Width = (this->dataGridView1->Width * 150) / 690;
+	
 }
 private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) 
 {
@@ -262,6 +271,7 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 		comboBox2->Items->Add(L"Alita");
 		comboBox2->Items->Add(L"Piernita");
 		comboBox2->Items->Add(L"Pecho");
+		comboBox2->Items->Add(L"Muslito");
 		comboBox2->Items->Add(L"Filete de pollo");
 		comboBox2->Items->Add(L"Salchipapa");
 		 break;
@@ -315,7 +325,9 @@ private: System::Void FormProduct_Load(System::Object^  sender, System::EventArg
 	str->InitialCatalog = "DSONIA_BD";
 	str->IntegratedSecurity = true;
 	cn = gcnew SqlConnection(Convert::ToString(str));
-	CargarRegistros("Select*from dbo.Product");
+	//CargarRegistros("Select*from dbo.Product");
+
+	comboBox1->SelectedIndex = 0;
 }
 
 
@@ -337,6 +349,7 @@ private: void CargarRegistros(String^Comando)
 			BindingSource^ bSource = gcnew BindingSource();
 			bSource->DataSource = dbaDataSet;
 			dataGridView1->DataSource = bSource;
+			
 			sda->Update(dbaDataSet);
 		}
 		if (Comando->Substring(0, 6) == "Update")
@@ -345,6 +358,7 @@ private: void CargarRegistros(String^Comando)
 			cmdDatabase->ExecuteNonQuery();
 			cn->Close();
 		}
+
 	}
 	catch (Exception^ex)
 	{

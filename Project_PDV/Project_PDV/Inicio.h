@@ -114,5 +114,9 @@ namespace ProjectPDV {
 
 	private: System::Void label2_Click(System::Object^  sender, System::EventArgs^  e) {
 	}
+	public: void LoadTheme(Color primary, Color secondary)
+	{
+		
+	}
 	};
 }

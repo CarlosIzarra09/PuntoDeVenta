@@ -25,7 +25,8 @@ namespace ProjectPDV {
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
 		ThemeColor*object;
-		
+		Color primary;
+		Color secondary;
 	public:
 		MyForm(void)
 		{
@@ -470,6 +471,8 @@ namespace ProjectPDV {
 				currentButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12.5));
 				panelTitleBar->BackColor = color;
 				panelLogo->BackColor = object->ChangeColorBrightness(color, -0.3);
+				primary = color;
+				secondary = object->ChangeColorBrightness(color, -0.3);
 			}
 		}
 	}
@@ -503,6 +506,7 @@ namespace ProjectPDV {
 		childForm->BringToFront();
 		childForm->Show();
 		lblTitle->Text = childForm->Text;
+		
 	}
 
 
@@ -516,13 +520,14 @@ namespace ProjectPDV {
 private: System::Void btnProducts_Click(System::Object^  sender, System::EventArgs^  e) 
 {
 	OpenChildForm(gcnew FormProduct(), sender);
-	//((FormProduct^)activateForm)->Get_DB(str);
+	
 }
 
-private: System::Void btnOrders_Click(System::Object^  sender, System::EventArgs^  e) 
+private: System::Void btnOrders_Click(System::Object^  sender, System::EventArgs^  e)
 {
-	OpenChildForm(gcnew Ordenes(), sender);
 	
+	OpenChildForm(gcnew Ordenes(), sender);
+   ((Ordenes^)activateForm)->LoadTheme(primary, secondary);
 }
 private: System::Void btnPersonal_Click(System::Object^  sender, System::EventArgs^  e) 
 {
