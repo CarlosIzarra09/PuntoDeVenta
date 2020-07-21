@@ -102,7 +102,9 @@ namespace ProjectPDV {
 	private: System::Windows::Forms::CheckBox^  checkBox3;
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::TextBox^  textBox1;
-	private: System::Windows::Forms::Button^  button4;
+	private: System::Windows::Forms::Button^  BtnSearch;
+
+
 
 
 
@@ -120,8 +122,8 @@ namespace ProjectPDV {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(Ordenes::typeid));
-			System::Windows::Forms::DataGridViewCellStyle^  dataGridViewCellStyle5 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
-			System::Windows::Forms::DataGridViewCellStyle^  dataGridViewCellStyle6 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^  dataGridViewCellStyle1 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
+			System::Windows::Forms::DataGridViewCellStyle^  dataGridViewCellStyle2 = (gcnew System::Windows::Forms::DataGridViewCellStyle());
 			this->btnRegist = (gcnew System::Windows::Forms::Button());
 			this->btnEdit = (gcnew System::Windows::Forms::Button());
 			this->dataGridView2 = (gcnew System::Windows::Forms::DataGridView());
@@ -158,7 +160,7 @@ namespace ProjectPDV {
 			this->checkBox3 = (gcnew System::Windows::Forms::CheckBox());
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
-			this->button4 = (gcnew System::Windows::Forms::Button());
+			this->BtnSearch = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -217,15 +219,15 @@ namespace ProjectPDV {
 			this->dataGridView2->Location = System::Drawing::Point(12, 366);
 			this->dataGridView2->Name = L"dataGridView2";
 			this->dataGridView2->ReadOnly = true;
-			dataGridViewCellStyle5->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle5->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			dataGridViewCellStyle5->Font = (gcnew System::Drawing::Font(L"Montserrat", 8.249999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle1->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle1->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			dataGridViewCellStyle1->Font = (gcnew System::Drawing::Font(L"Montserrat", 8.249999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle5->ForeColor = System::Drawing::SystemColors::Window;
-			dataGridViewCellStyle5->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle5->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle5->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView2->RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+			dataGridViewCellStyle1->ForeColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle1->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle1->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle1->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView2->RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
 			this->dataGridView2->Size = System::Drawing::Size(724, 169);
 			this->dataGridView2->TabIndex = 5;
 			// 
@@ -373,6 +375,7 @@ namespace ProjectPDV {
 			this->button1->Text = L" Eliminar";
 			this->button1->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &Ordenes::button1_Click);
 			// 
 			// label4
 			// 
@@ -546,15 +549,15 @@ namespace ProjectPDV {
 			this->dataGridView1->Location = System::Drawing::Point(391, 192);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->ReadOnly = true;
-			dataGridViewCellStyle6->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
-			dataGridViewCellStyle6->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			dataGridViewCellStyle6->Font = (gcnew System::Drawing::Font(L"Montserrat", 8.249999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			dataGridViewCellStyle2->Alignment = System::Windows::Forms::DataGridViewContentAlignment::MiddleLeft;
+			dataGridViewCellStyle2->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			dataGridViewCellStyle2->Font = (gcnew System::Drawing::Font(L"Montserrat", 8.249999F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			dataGridViewCellStyle6->ForeColor = System::Drawing::SystemColors::Window;
-			dataGridViewCellStyle6->SelectionBackColor = System::Drawing::SystemColors::Highlight;
-			dataGridViewCellStyle6->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
-			dataGridViewCellStyle6->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
-			this->dataGridView1->RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+			dataGridViewCellStyle2->ForeColor = System::Drawing::SystemColors::Window;
+			dataGridViewCellStyle2->SelectionBackColor = System::Drawing::SystemColors::Highlight;
+			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
+			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::True;
+			this->dataGridView1->RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
 			this->dataGridView1->RowHeadersVisible = false;
 			this->dataGridView1->Size = System::Drawing::Size(180, 156);
 			this->dataGridView1->TabIndex = 36;
@@ -645,29 +648,30 @@ namespace ProjectPDV {
 			this->textBox1->Size = System::Drawing::Size(29, 20);
 			this->textBox1->TabIndex = 41;
 			// 
-			// button4
+			// BtnSearch
 			// 
-			this->button4->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->button4->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->button4->FlatAppearance->BorderSize = 0;
-			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat", 12));
-			this->button4->ForeColor = System::Drawing::Color::White;
-			this->button4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button4.Image")));
-			this->button4->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->button4->Location = System::Drawing::Point(299, 51);
-			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(28, 27);
-			this->button4->TabIndex = 42;
-			this->button4->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
-			this->button4->UseVisualStyleBackColor = false;
+			this->BtnSearch->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->BtnSearch->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->BtnSearch->FlatAppearance->BorderSize = 0;
+			this->BtnSearch->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->BtnSearch->Font = (gcnew System::Drawing::Font(L"Montserrat", 12));
+			this->BtnSearch->ForeColor = System::Drawing::Color::White;
+			this->BtnSearch->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"BtnSearch.Image")));
+			this->BtnSearch->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			this->BtnSearch->Location = System::Drawing::Point(299, 51);
+			this->BtnSearch->Name = L"BtnSearch";
+			this->BtnSearch->Size = System::Drawing::Size(28, 27);
+			this->BtnSearch->TabIndex = 42;
+			this->BtnSearch->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->BtnSearch->UseVisualStyleBackColor = false;
+			this->BtnSearch->Click += gcnew System::EventHandler(this, &Ordenes::BtnSearch_Click);
 			// 
 			// Ordenes
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(748, 470);
-			this->Controls->Add(this->button4);
+			this->Controls->Add(this->BtnSearch);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->checkBox3);
@@ -743,8 +747,8 @@ namespace ProjectPDV {
 	{
 		SqlCommand^cmdDatabase = gcnew SqlCommand(Comando, cn);
 
-		try
-		{
+		//try
+		//{
 			SqlDataAdapter^ sda = gcnew SqlDataAdapter();
 
 			if (Comando->Substring(0, 6) == "Select")
@@ -757,28 +761,23 @@ namespace ProjectPDV {
 				BindingSource^ bSource = gcnew BindingSource();
 				bSource->DataSource = dbaDataSet;
 				dataGridView2->DataSource = bSource;
-
 				sda->Update(dbaDataSet);
+				bSource->Position = dataGridView2->Rows->Count - 1;
 			}
-			if (Comando->Substring(0, 6) == "Update")
+			if (Comando->Substring(0, 6) == "Update" || Comando->Substring(0, 6) == "Insert"
+				|| Comando->Substring(0, 6) == "Delete")
 			{
 				cn->Open();
 				cmdDatabase->ExecuteNonQuery();
 				cn->Close();
 			}
-			if (Comando->Substring(0, 6) == "Insert")
-			{
-				//Insert into Client (FirstName,Phone,C_Address) values(@nombre,@phone,@direccion)
-				cn->Open();
-				cmdDatabase->ExecuteNonQuery();
-				cn->Close();
-			}
+			
 
-		}
+		/*}
 		catch (Exception^ex)
 		{
 			MessageBox::Show(ex->Message);
-		}
+		}*/
 	}
 	private: String^ fecha_actual()
 	{
@@ -809,6 +808,7 @@ namespace ProjectPDV {
 		dataGridView2->Columns[4]->HeaderText = "Hora entregada";
 		dataGridView2->Columns[5]->HeaderText = "Direccion";
 		dataGridView2->Columns[6]->HeaderText = "Comentario";
+		dataGridView2->Columns[7]->HeaderText = "Monto";
 	}
 
 
@@ -990,40 +990,167 @@ namespace ProjectPDV {
 	}
 	private: System::Void btnRegist_Click(System::Object^  sender, System::EventArgs^  e)
 	{
-		try {
+		
 
-
-
-			//el mejor caso
-			CargarRegistros("Insert into Client values('" + TBcliente->Text + "'," + TBcel->Text + ",'" + TBdireccion->Text + "')");
-			//Buscar ID cliente antes de insertar su orden;
-			SqlCommand^cmdDatabase = gcnew SqlCommand("Select IDENT_CURRENT('Client')", cn);
-			cn->Open();
-			int idC = Convert::ToInt32(cmdDatabase->ExecuteScalar());
-			cn->Close();
-
-			CargarRegistros("Insert into Orders values('" + fecha_actual() + "','" + hora_actual() + "',null,'" + TBdireccion->Text + "',0,'" + richTBcomment->Text + "',0," + textBox1->Text + "," + (CBB1->SelectedIndex + 1).ToString() + "," + idC.ToString() + ")");
-			//Buscar ID Orden antes de insertar sus productos;
-			SqlCommand^cmdDatabase2 = gcnew SqlCommand("Select IDENT_CURRENT('Orders')", cn);
-			cn->Open();
-			int idO = Convert::ToInt32(cmdDatabase2->ExecuteScalar());
-			cn->Close();
-
-			int idP;
-			for (int i = 0; i < dataGridView1->Rows->Count; i++)
+			if (checkBox1->Checked == true)
 			{
-				idP = Convert::ToInt32(dataGridView1->Rows[i]->Cells[0]->Value);
-				for (int j = 0; j < Convert::ToInt32(dataGridView1->Rows[i]->Cells[1]->Value); j++)
-					CargarRegistros("Insert into Order_Details values (" + (Convert::ToInt16(checkBox1->Checked)).ToString() + "," + (Convert::ToInt16(checkBox3->Checked)).ToString() + "," + idO.ToString() + "," + idP.ToString() + ")");
+				if (
+					(TBcliente->Text == "") || (TBcel->Text == "") || (TBdireccion->Text == "") || (richTBcomment->Text == "") ||
+					(textBox1->Text == "")  || (dataGridView1->Rows->Count == 0)
+					)
+				{
+					MessageBox::Show("Por favor verifique si ingresó todos los datos","Mensaje",MessageBoxButtons::OK, MessageBoxIcon::Information);
+				}
+				else
+				{
+					try {
+						//el mejor caso
+						CargarRegistros("Insert into Client values('" + TBcliente->Text + "'," + TBcel->Text + ",'" + TBdireccion->Text + "')");
+						//Buscar ID cliente antes de insertar su orden;
+						SqlCommand^cmdDatabase = gcnew SqlCommand("Select IDENT_CURRENT('Client')", cn);
+						cn->Open();
+						int idC = Convert::ToInt32(cmdDatabase->ExecuteScalar());
+						cn->Close();
+
+						CargarRegistros("Insert into Orders values('" + fecha_actual() + "','" + hora_actual() + "',null,'" + TBdireccion->Text + "',0,'" + richTBcomment->Text + "',0," + textBox1->Text + "," + (CBB1->SelectedIndex + 1).ToString() + "," + idC.ToString() + ")");
+						//Buscar ID Orden antes de insertar sus productos;
+						SqlCommand^cmdDatabase2 = gcnew SqlCommand("Select IDENT_CURRENT('Orders')", cn);
+						cn->Open();
+						int idO = Convert::ToInt32(cmdDatabase2->ExecuteScalar());
+						cn->Close();
+
+						int idP;
+						double precio =0;
+						int cantidad;
+						for (int i = 0; i < dataGridView1->Rows->Count; i++)
+						{
+							cantidad = Convert::ToInt32(dataGridView1->Rows[i]->Cells[1]->Value);
+							idP = Convert::ToInt32(dataGridView1->Rows[i]->Cells[0]->Value);
+							precio = Convert::ToDouble (dataGridView1->Rows[i]->Cells[3]->Value) / Convert::ToDouble(dataGridView1->Rows[i]->Cells[1]->Value);
+							//String^Sprecio = precio.ToString();
+							CargarRegistros("Insert into Order_Details values (" + (Convert::ToInt16(checkBox1->Checked)).ToString() + "," + (Convert::ToInt16(checkBox3->Checked)).ToString() + "," + (cantidad).ToString() + "," + precio.ToString()->Replace(",",".") + "," + idO.ToString() + "," + idP.ToString() + ")");
+						
+							//actualizamos stock
+							CargarRegistros("Update Product Set UnitInStock = UnitInStock - " + cantidad.ToString() + " Where ProductID = " + idP.ToString() + " and CategoryID != 4 and CategoryID != 6"/* and UnitInStock >="+cantidad.ToString()*/);
+							Actualizar_DGV();
+						}
+					}
+					catch (Exception^e)
+					{
+						Actualizar_DGV();
+						MessageBox::Show("No hay stock disponible para un producto ordenado","Mensaje",MessageBoxButtons::OK,MessageBoxIcon::Information);
+						cn->Close();
+
+						CargarRegistros("Delete from Order_Details where Order_Details.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
+						SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select o.ClientID from Orders o where o.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value), cn);
+						cn->Open();
+						int idC = Convert::ToInt32(cmdDatabase4->ExecuteScalar());
+						cn->Close();
+						//eliminamos orders
+						CargarRegistros("Delete from Orders where Orders.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
+						//eliminamos cliente
+						CargarRegistros("Delete from Client where Client.ClientID = " + idC.ToString());
+						dataGridView2->Rows->RemoveAt(dataGridView2->CurrentRow->Index);
+					}
+				}
+			}
+			else
+			{
+				if (
+					(TBcliente->Text == "") || (richTBcomment->Text == "")  || (dataGridView1->Rows->Count == 0)
+					)
+				{
+					MessageBox::Show("Por favor verifique si ingresó todos los datos", "Mensaje", MessageBoxButtons::OK, MessageBoxIcon::Information);
+				}
+				else
+				{
+					try {
+						//el mejor caso
+						
+						CargarRegistros("Insert into Client values('" + TBcliente->Text + "'," + ((TBcel->Text == "")? "null": TBcel->Text) + ",'" + TBdireccion->Text + "')");
+						//Buscar ID cliente antes de insertar su orden;
+						SqlCommand^cmdDatabase3 = gcnew SqlCommand("Select IDENT_CURRENT('Client')", cn);
+						cn->Open();
+						int idC = Convert::ToInt32(cmdDatabase3->ExecuteScalar());
+						cn->Close();
+
+						CargarRegistros("Insert into Orders values('" + fecha_actual() + "','" + hora_actual() + "',null,null,0.00,'" + richTBcomment->Text + "',0,0.00, null," + idC.ToString() + ")");
+						//Buscar ID Orden antes de insertar sus productos;
+						SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select IDENT_CURRENT('Orders')", cn);
+						cn->Open();
+						int idO = Convert::ToInt32(cmdDatabase4->ExecuteScalar());
+						cn->Close();
+
+						int idP;
+						double precio =0.0;
+						int cantidad;
+						for (int i = 0; i < dataGridView1->Rows->Count; i++)
+						{
+							cantidad = Convert::ToInt16(dataGridView1->Rows[i]->Cells[1]->Value);
+							idP = Convert::ToInt32(dataGridView1->Rows[i]->Cells[0]->Value);
+							precio = Convert::ToDouble(dataGridView1->Rows[i]->Cells[3]->Value) / Convert::ToDouble(dataGridView1->Rows[i]->Cells[1]->Value);
+							CargarRegistros("Insert into Order_Details values (" + (Convert::ToInt16(checkBox1->Checked)).ToString() + "," + (Convert::ToInt16(checkBox3->Checked)).ToString() + "," + (cantidad).ToString() + "," + precio.ToString()->Replace(",",".")+ "," + idO.ToString() + "," + idP.ToString() + ")");
+							
+							//actualizamos stock
+							CargarRegistros("Update Product Set UnitInStock = UnitInStock - " + cantidad.ToString() + " Where ProductID = " + idP.ToString()+" and CategoryID != 4 and CategoryID != 6"/* and UnitInStock >=" + cantidad.ToString()*/);
+							Actualizar_DGV();
+						}
+					}
+					catch (Exception^e)
+					{
+						Actualizar_DGV();
+						MessageBox::Show("No hay stock disponible para un producto ordenado", "Mensaje", MessageBoxButtons::OK, MessageBoxIcon::Information);
+						cn->Close();
+
+
+						CargarRegistros("Delete from Order_Details where Order_Details.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
+						SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select o.ClientID from Orders o where o.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value), cn);
+						cn->Open();
+						int idC = Convert::ToInt32(cmdDatabase4->ExecuteScalar());
+						cn->Close();
+						//eliminamos orders
+						CargarRegistros("Delete from Orders where Orders.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
+						//eliminamos cliente
+						CargarRegistros("Delete from Client where Client.ClientID = " + idC.ToString());
+						dataGridView2->Rows->RemoveAt(dataGridView2->CurrentRow->Index);
+					}
+				}
+			}
+			
+		
+		
+	}
+	private: System::Void BtnSearch_Click(System::Object^  sender, System::EventArgs^  e) 
+	{
+
+	}
+private: System::Void button1_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	if (dataGridView2->Rows->Count > 0)
+	{
+		if (MessageBox::Show("Estás seguro que deseas eliminar la orden? Esta acción no se podrá deshacer", "Mensaje", MessageBoxButtons::YesNo, MessageBoxIcon::Exclamation) == System::Windows::Forms::DialogResult::Yes)
+		{
+			//eliminamos orders details
+			CargarRegistros("Delete from Order_Details where Order_Details.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
+
+
+			SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select o.ClientID from Orders o where o.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value), cn);
+			cn->Open();
+			int idC = Convert::ToInt32(cmdDatabase4->ExecuteScalar());
+			cn->Close();
+
+			//eliminamos orders
+			CargarRegistros("Delete from Orders where Orders.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
+
+			if (MessageBox::Show("Desea conservar los datos del cliente?", "Mensaje", MessageBoxButtons::YesNo, MessageBoxIcon::Information) == System::Windows::Forms::DialogResult::No)
+			{
+				//eliminamos cliente
+				CargarRegistros("Delete from Client where Client.ClientID = " + idC.ToString());
 			}
 
-			Actualizar_DGV();
-
-		}
-		catch (Exception^e)
-		{
-			MessageBox::Show(e->Message);
+			dataGridView2->Rows->RemoveAt(dataGridView2->CurrentRow->Index);
 		}
 	}
-	};
+}
+};
 }
