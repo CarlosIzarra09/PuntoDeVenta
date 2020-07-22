@@ -204,6 +204,7 @@ namespace ProjectPDV {
 			this->btnEdit->Text = L"  Corregir";
 			this->btnEdit->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->btnEdit->UseVisualStyleBackColor = false;
+			this->btnEdit->Click += gcnew System::EventHandler(this, &Ordenes::btnEdit_Click);
 			// 
 			// dataGridView2
 			// 
@@ -988,6 +989,13 @@ namespace ProjectPDV {
 	{
 		textBox5->Focus();
 	}
+
+	private: void Devolver_Stock(int ID)
+	{
+		CargarRegistros("Update Product Set UnitInStock = UnitInStock+ t.Quantity from Product p, t1 t where p.ProductID = t.ProductID  and t.OrderID =" + ID.ToString());
+	}
+
+
 	private: System::Void btnRegist_Click(System::Object^  sender, System::EventArgs^  e)
 	{
 		
@@ -1003,6 +1011,8 @@ namespace ProjectPDV {
 				}
 				else
 				{
+					String^nombre;
+					int idO;
 					try {
 						//el mejor caso
 						CargarRegistros("Insert into Client values('" + TBcliente->Text + "'," + TBcel->Text + ",'" + TBdireccion->Text + "')");
@@ -1016,46 +1026,54 @@ namespace ProjectPDV {
 						//Buscar ID Orden antes de insertar sus productos;
 						SqlCommand^cmdDatabase2 = gcnew SqlCommand("Select IDENT_CURRENT('Orders')", cn);
 						cn->Open();
-						int idO = Convert::ToInt32(cmdDatabase2->ExecuteScalar());
+						idO = Convert::ToInt32(cmdDatabase2->ExecuteScalar());
 						cn->Close();
 
 						int idP;
 						double precio =0;
 						int cantidad;
+						
 						for (int i = 0; i < dataGridView1->Rows->Count; i++)
 						{
+							nombre = Convert::ToString(dataGridView1->Rows[i]->Cells[2]->Value);
 							cantidad = Convert::ToInt32(dataGridView1->Rows[i]->Cells[1]->Value);
 							idP = Convert::ToInt32(dataGridView1->Rows[i]->Cells[0]->Value);
 							precio = Convert::ToDouble (dataGridView1->Rows[i]->Cells[3]->Value) / Convert::ToDouble(dataGridView1->Rows[i]->Cells[1]->Value);
-							//String^Sprecio = precio.ToString();
-							CargarRegistros("Insert into Order_Details values (" + (Convert::ToInt16(checkBox1->Checked)).ToString() + "," + (Convert::ToInt16(checkBox3->Checked)).ToString() + "," + (cantidad).ToString() + "," + precio.ToString()->Replace(",",".") + "," + idO.ToString() + "," + idP.ToString() + ")");
-						
+							
 							//actualizamos stock
 							CargarRegistros("Update Product Set UnitInStock = UnitInStock - " + cantidad.ToString() + " Where ProductID = " + idP.ToString() + " and CategoryID != 4 and CategoryID != 6"/* and UnitInStock >="+cantidad.ToString()*/);
+							
+							CargarRegistros("Insert into Order_Details values (" + (Convert::ToInt16(checkBox1->Checked)).ToString() + "," + (Convert::ToInt16(checkBox3->Checked)).ToString() + "," + (cantidad).ToString() + "," + precio.ToString()->Replace(",",".") + "," + idO.ToString() + "," + idP.ToString() + ")");
 							Actualizar_DGV();
+						
 						}
 					}
 					catch (Exception^e)
 					{
 						Actualizar_DGV();
-						MessageBox::Show("No hay stock disponible para un producto ordenado","Mensaje",MessageBoxButtons::OK,MessageBoxIcon::Information);
+						MessageBox::Show("No hay stock disponible para "+nombre,"Mensaje",MessageBoxButtons::OK,MessageBoxIcon::Information);
 						cn->Close();
-
-						CargarRegistros("Delete from Order_Details where Order_Details.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
-						SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select o.ClientID from Orders o where o.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value), cn);
+						
+						Devolver_Stock(idO);
+												
+						CargarRegistros("Delete from Order_Details where Order_Details.OrderID = " + idO.ToString());
+						SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select o.ClientID from Orders o where o.OrderID = " + idO.ToString(), cn);
 						cn->Open();
 						int idC = Convert::ToInt32(cmdDatabase4->ExecuteScalar());
 						cn->Close();
 						//eliminamos orders
-						CargarRegistros("Delete from Orders where Orders.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
+						CargarRegistros("Delete from Orders where Orders.OrderID = " + idO.ToString());
 						//eliminamos cliente
 						CargarRegistros("Delete from Client where Client.ClientID = " + idC.ToString());
+						if(dataGridView2->Rows->Count>0)
 						dataGridView2->Rows->RemoveAt(dataGridView2->CurrentRow->Index);
 					}
 				}
 			}
 			else
 			{
+				String^nombre;
+				int idO;
 				if (
 					(TBcliente->Text == "") || (richTBcomment->Text == "")  || (dataGridView1->Rows->Count == 0)
 					)
@@ -1078,40 +1096,48 @@ namespace ProjectPDV {
 						//Buscar ID Orden antes de insertar sus productos;
 						SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select IDENT_CURRENT('Orders')", cn);
 						cn->Open();
-						int idO = Convert::ToInt32(cmdDatabase4->ExecuteScalar());
+						idO = Convert::ToInt32(cmdDatabase4->ExecuteScalar());
 						cn->Close();
 
 						int idP;
 						double precio =0.0;
 						int cantidad;
+						
 						for (int i = 0; i < dataGridView1->Rows->Count; i++)
 						{
+							nombre = Convert::ToString(dataGridView1->Rows[i]->Cells[2]->Value);
 							cantidad = Convert::ToInt16(dataGridView1->Rows[i]->Cells[1]->Value);
 							idP = Convert::ToInt32(dataGridView1->Rows[i]->Cells[0]->Value);
 							precio = Convert::ToDouble(dataGridView1->Rows[i]->Cells[3]->Value) / Convert::ToDouble(dataGridView1->Rows[i]->Cells[1]->Value);
-							CargarRegistros("Insert into Order_Details values (" + (Convert::ToInt16(checkBox1->Checked)).ToString() + "," + (Convert::ToInt16(checkBox3->Checked)).ToString() + "," + (cantidad).ToString() + "," + precio.ToString()->Replace(",",".")+ "," + idO.ToString() + "," + idP.ToString() + ")");
 							
 							//actualizamos stock
 							CargarRegistros("Update Product Set UnitInStock = UnitInStock - " + cantidad.ToString() + " Where ProductID = " + idP.ToString()+" and CategoryID != 4 and CategoryID != 6"/* and UnitInStock >=" + cantidad.ToString()*/);
+							
+
+							CargarRegistros("Insert into Order_Details values (" + (Convert::ToInt16(checkBox1->Checked)).ToString() + "," + (Convert::ToInt16(checkBox3->Checked)).ToString() + "," + (cantidad).ToString() + "," + precio.ToString()->Replace(",",".")+ "," + idO.ToString() + "," + idP.ToString() + ")");
 							Actualizar_DGV();
+							
 						}
 					}
 					catch (Exception^e)
 					{
 						Actualizar_DGV();
-						MessageBox::Show("No hay stock disponible para un producto ordenado", "Mensaje", MessageBoxButtons::OK, MessageBoxIcon::Information);
+						MessageBox::Show("No hay stock disponible para "+nombre , "Mensaje", MessageBoxButtons::OK, MessageBoxIcon::Information);
 						cn->Close();
 
+						Devolver_Stock(idO);
 
-						CargarRegistros("Delete from Order_Details where Order_Details.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
-						SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select o.ClientID from Orders o where o.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value), cn);
+						CargarRegistros("Delete from Order_Details where Order_Details.OrderID = " + idO.ToString());
+						SqlCommand^cmdDatabase4 = gcnew SqlCommand("Select o.ClientID from Orders o where o.OrderID = " + idO.ToString(), cn);
 						cn->Open();
 						int idC = Convert::ToInt32(cmdDatabase4->ExecuteScalar());
 						cn->Close();
 						//eliminamos orders
-						CargarRegistros("Delete from Orders where Orders.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
+						CargarRegistros("Delete from Orders where Orders.OrderID = " + idO.ToString());
 						//eliminamos cliente
 						CargarRegistros("Delete from Client where Client.ClientID = " + idC.ToString());
+
+						if (dataGridView2->Rows->Count > 0)
 						dataGridView2->Rows->RemoveAt(dataGridView2->CurrentRow->Index);
 					}
 				}
@@ -1130,6 +1156,10 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 	{
 		if (MessageBox::Show("Estás seguro que deseas eliminar la orden? Esta acción no se podrá deshacer", "Mensaje", MessageBoxButtons::YesNo, MessageBoxIcon::Exclamation) == System::Windows::Forms::DialogResult::Yes)
 		{
+			
+			Devolver_Stock(Convert::ToInt32(dataGridView2->CurrentRow->Cells[0]->Value));
+		
+			
 			//eliminamos orders details
 			CargarRegistros("Delete from Order_Details where Order_Details.OrderID = " + Convert::ToString(dataGridView2->CurrentRow->Cells[0]->Value));
 
@@ -1150,6 +1180,13 @@ private: System::Void button1_Click(System::Object^  sender, System::EventArgs^ 
 
 			dataGridView2->Rows->RemoveAt(dataGridView2->CurrentRow->Index);
 		}
+	}
+}
+private: System::Void btnEdit_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	if (dataGridView2->Rows->Count > 0)
+	{
+
 	}
 }
 };

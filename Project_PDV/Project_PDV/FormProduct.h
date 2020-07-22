@@ -276,9 +276,9 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 		comboBox2->Items->Add(L"Salchipapa");
 		 break;
 	case 1:
-		comboBox2->Items->Add(L"De Pollo");
-		comboBox2->Items->Add(L"De Carne");
-		comboBox2->Items->Add(L"Broaster");
+		comboBox2->Items->Add(L"H. de pollo");
+		comboBox2->Items->Add(L"H. de carne");
+		comboBox2->Items->Add(L"Broaster Burger");
 		 break;
 	case 2:
 		comboBox2->Items->Add("1 1/2 L INKA");
@@ -290,7 +290,7 @@ private: System::Void comboBox1_SelectedIndexChanged(System::Object^  sender, Sy
 		comboBox2->Items->Add("1/2 L Fanta R.");
 		comboBox2->Items->Add("1/2 L Fanta N.");
 		comboBox2->Items->Add("1/2 L Pepsi");
-		comboBox2->Items->Add("1/2 L Guaraná");
+		comboBox2->Items->Add("1/2 L Guarana");
 		comboBox2->Items->Add("Pepsi J.");
 		comboBox2->Items->Add("Esporade");
 		comboBox2->Items->Add("Agua Cielo");

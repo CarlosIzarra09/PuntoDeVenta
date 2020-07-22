@@ -553,7 +553,7 @@ private: System::Void btnConfg_Click(System::Object^  sender, System::EventArgs^
 private: System::Void btnHome_Click(System::Object^  sender, System::EventArgs^  e)
 {
 	OpenChildForm(gcnew Inicio(), sender);
-		
+	((Inicio^)activateForm)->LoadTheme(primary, secondary);
 }
 private: System::Void lblTitle_TextChanged(System::Object^  sender, System::EventArgs^  e)
 {
