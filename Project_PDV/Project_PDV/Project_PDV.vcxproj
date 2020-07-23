@@ -177,6 +177,9 @@
     <EmbeddedResource Include="Clientes.resx">
       <DependentUpon>Clientes.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditarOrden.resx">
+      <DependentUpon>EditarOrden.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Empleados.resx">
       <DependentUpon>Empleados.h</DependentUpon>
     </EmbeddedResource>

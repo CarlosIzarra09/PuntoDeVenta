@@ -1,5 +1,6 @@
 #pragma once
 #include "ThemeColor.h"
+#include "EditarOrden.h"
 namespace ProjectPDV {
 
 	using namespace System;
@@ -16,20 +17,25 @@ namespace ProjectPDV {
 	public ref class Ordenes : public System::Windows::Forms::Form
 	{
 		double T_Order;
+		bool puntero;
 		SqlConnection^cn;
+		SqlConnectionStringBuilder^str;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column2;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^  Column3;
+	private: System::Windows::Forms::Button^  button4;
 
 
 
 
-			 SqlConnectionStringBuilder^str;
+
+
+			 
 	public:
 		Ordenes(void)
 		{
-
+			puntero = false;
 			InitializeComponent();
 			//
 			//TODO: agregar código de constructor aquí
@@ -103,6 +109,7 @@ namespace ProjectPDV {
 	private: System::Windows::Forms::Label^  label5;
 	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::Button^  BtnSearch;
+	private: System::ComponentModel::IContainer^  components;
 
 
 
@@ -112,7 +119,7 @@ namespace ProjectPDV {
 		/// <summary>
 		/// Variable del diseñador necesaria.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -161,6 +168,7 @@ namespace ProjectPDV {
 			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->BtnSearch = (gcnew System::Windows::Forms::Button());
+			this->button4 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			this->SuspendLayout();
@@ -197,7 +205,7 @@ namespace ProjectPDV {
 			this->btnEdit->ForeColor = System::Drawing::Color::White;
 			this->btnEdit->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"btnEdit.Image")));
 			this->btnEdit->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->btnEdit->Location = System::Drawing::Point(577, 103);
+			this->btnEdit->Location = System::Drawing::Point(577, 98);
 			this->btnEdit->Name = L"btnEdit";
 			this->btnEdit->Size = System::Drawing::Size(159, 42);
 			this->btnEdit->TabIndex = 3;
@@ -369,11 +377,11 @@ namespace ProjectPDV {
 			this->button1->ForeColor = System::Drawing::Color::White;
 			this->button1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.Image")));
 			this->button1->ImageAlign = System::Drawing::ContentAlignment::MiddleLeft;
-			this->button1->Location = System::Drawing::Point(577, 159);
+			this->button1->Location = System::Drawing::Point(577, 146);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(159, 42);
 			this->button1->TabIndex = 18;
-			this->button1->Text = L" Eliminar";
+			this->button1->Text = L"  Eliminar";
 			this->button1->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
 			this->button1->UseVisualStyleBackColor = false;
 			this->button1->Click += gcnew System::EventHandler(this, &Ordenes::button1_Click);
@@ -417,7 +425,7 @@ namespace ProjectPDV {
 			this->label8->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
 			this->label8->AutoSize = true;
 			this->label8->Font = (gcnew System::Drawing::Font(L"Montserrat", 20));
-			this->label8->Location = System::Drawing::Point(616, 240);
+			this->label8->Location = System::Drawing::Point(616, 275);
 			this->label8->Name = L"label8";
 			this->label8->Size = System::Drawing::Size(102, 33);
 			this->label8->TabIndex = 27;
@@ -429,7 +437,7 @@ namespace ProjectPDV {
 			this->lblPrecio->AutoSize = true;
 			this->lblPrecio->Font = (gcnew System::Drawing::Font(L"Montserrat", 22));
 			this->lblPrecio->ForeColor = System::Drawing::Color::DarkRed;
-			this->lblPrecio->Location = System::Drawing::Point(639, 273);
+			this->lblPrecio->Location = System::Drawing::Point(639, 308);
 			this->lblPrecio->Name = L"lblPrecio";
 			this->lblPrecio->Size = System::Drawing::Size(88, 37);
 			this->lblPrecio->TabIndex = 28;
@@ -598,7 +606,7 @@ namespace ProjectPDV {
 			this->lblprecioU->BackColor = System::Drawing::Color::Transparent;
 			this->lblprecioU->Font = (gcnew System::Drawing::Font(L"Montserrat", 22));
 			this->lblprecioU->ForeColor = System::Drawing::Color::DarkRed;
-			this->lblprecioU->Location = System::Drawing::Point(595, 273);
+			this->lblprecioU->Location = System::Drawing::Point(595, 308);
 			this->lblprecioU->Name = L"lblprecioU";
 			this->lblprecioU->Size = System::Drawing::Size(50, 37);
 			this->lblprecioU->TabIndex = 37;
@@ -667,11 +675,31 @@ namespace ProjectPDV {
 			this->BtnSearch->UseVisualStyleBackColor = false;
 			this->BtnSearch->Click += gcnew System::EventHandler(this, &Ordenes::BtnSearch_Click);
 			// 
+			// button4
+			// 
+			this->button4->Anchor = static_cast<System::Windows::Forms::AnchorStyles>((System::Windows::Forms::AnchorStyles::Top | System::Windows::Forms::AnchorStyles::Right));
+			this->button4->BackColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->button4->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->button4->FlatAppearance->BorderSize = 0;
+			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->button4->Font = (gcnew System::Drawing::Font(L"Montserrat", 15, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->button4->ForeColor = System::Drawing::Color::White;
+			this->button4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button4.Image")));
+			this->button4->Location = System::Drawing::Point(688, 192);
+			this->button4->Name = L"button4";
+			this->button4->Size = System::Drawing::Size(48, 42);
+			this->button4->TabIndex = 43;
+			this->button4->TextImageRelation = System::Windows::Forms::TextImageRelation::ImageBeforeText;
+			this->button4->UseVisualStyleBackColor = false;
+			this->button4->Click += gcnew System::EventHandler(this, &Ordenes::button4_Click);
+			// 
 			// Ordenes
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(748, 470);
+			this->Controls->Add(this->button4);
 			this->Controls->Add(this->BtnSearch);
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label5);
@@ -709,7 +737,9 @@ namespace ProjectPDV {
 			this->Name = L"Ordenes";
 			this->Text = L"ORDENES";
 			this->Load += gcnew System::EventHandler(this, &Ordenes::Ordenes_Load);
+			this->MdiChildActivate += gcnew System::EventHandler(this, &Ordenes::Ordenes_MdiChildActivate);
 			this->SizeChanged += gcnew System::EventHandler(this, &Ordenes::Ordenes_SizeChanged);
+			this->MouseClick += gcnew System::Windows::Forms::MouseEventHandler(this, &Ordenes::Ordenes_MouseClick);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			this->ResumeLayout(false);
@@ -748,8 +778,6 @@ namespace ProjectPDV {
 	{
 		SqlCommand^cmdDatabase = gcnew SqlCommand(Comando, cn);
 
-		//try
-		//{
 			SqlDataAdapter^ sda = gcnew SqlDataAdapter();
 
 			if (Comando->Substring(0, 6) == "Select")
@@ -774,11 +802,7 @@ namespace ProjectPDV {
 			}
 			
 
-		/*}
-		catch (Exception^ex)
-		{
-			MessageBox::Show(ex->Message);
-		}*/
+	
 	}
 	private: String^ fecha_actual()
 	{
@@ -1002,6 +1026,8 @@ namespace ProjectPDV {
 
 			if (checkBox1->Checked == true)
 			{
+				
+
 				if (
 					(TBcliente->Text == "") || (TBcel->Text == "") || (TBdireccion->Text == "") || (richTBcomment->Text == "") ||
 					(textBox1->Text == "")  || (dataGridView1->Rows->Count == 0)
@@ -1013,6 +1039,7 @@ namespace ProjectPDV {
 				{
 					String^nombre;
 					int idO;
+					int i = 0;
 					try {
 						//el mejor caso
 						CargarRegistros("Insert into Client values('" + TBcliente->Text + "'," + TBcel->Text + ",'" + TBdireccion->Text + "')");
@@ -1033,7 +1060,7 @@ namespace ProjectPDV {
 						double precio =0;
 						int cantidad;
 						
-						for (int i = 0; i < dataGridView1->Rows->Count; i++)
+						for (; i < dataGridView1->Rows->Count; i++)
 						{
 							nombre = Convert::ToString(dataGridView1->Rows[i]->Cells[2]->Value);
 							cantidad = Convert::ToInt32(dataGridView1->Rows[i]->Cells[1]->Value);
@@ -1065,7 +1092,8 @@ namespace ProjectPDV {
 						CargarRegistros("Delete from Orders where Orders.OrderID = " + idO.ToString());
 						//eliminamos cliente
 						CargarRegistros("Delete from Client where Client.ClientID = " + idC.ToString());
-						if(dataGridView2->Rows->Count>0)
+
+						if(dataGridView2->Rows->Count>0 && i!= 0)
 						dataGridView2->Rows->RemoveAt(dataGridView2->CurrentRow->Index);
 					}
 				}
@@ -1074,6 +1102,7 @@ namespace ProjectPDV {
 			{
 				String^nombre;
 				int idO;
+				int j = 0;
 				if (
 					(TBcliente->Text == "") || (richTBcomment->Text == "")  || (dataGridView1->Rows->Count == 0)
 					)
@@ -1103,12 +1132,12 @@ namespace ProjectPDV {
 						double precio =0.0;
 						int cantidad;
 						
-						for (int i = 0; i < dataGridView1->Rows->Count; i++)
+						for (; j < dataGridView1->Rows->Count; j++)
 						{
-							nombre = Convert::ToString(dataGridView1->Rows[i]->Cells[2]->Value);
-							cantidad = Convert::ToInt16(dataGridView1->Rows[i]->Cells[1]->Value);
-							idP = Convert::ToInt32(dataGridView1->Rows[i]->Cells[0]->Value);
-							precio = Convert::ToDouble(dataGridView1->Rows[i]->Cells[3]->Value) / Convert::ToDouble(dataGridView1->Rows[i]->Cells[1]->Value);
+							nombre = Convert::ToString(dataGridView1->Rows[j]->Cells[2]->Value);
+							cantidad = Convert::ToInt16(dataGridView1->Rows[j]->Cells[1]->Value);
+							idP = Convert::ToInt32(dataGridView1->Rows[j]->Cells[0]->Value);
+							precio = Convert::ToDouble(dataGridView1->Rows[j]->Cells[3]->Value) / Convert::ToDouble(dataGridView1->Rows[j]->Cells[1]->Value);
 							
 							//actualizamos stock
 							CargarRegistros("Update Product Set UnitInStock = UnitInStock - " + cantidad.ToString() + " Where ProductID = " + idP.ToString()+" and CategoryID != 4 and CategoryID != 6"/* and UnitInStock >=" + cantidad.ToString()*/);
@@ -1137,7 +1166,7 @@ namespace ProjectPDV {
 						//eliminamos cliente
 						CargarRegistros("Delete from Client where Client.ClientID = " + idC.ToString());
 
-						if (dataGridView2->Rows->Count > 0)
+						if (dataGridView2->Rows->Count > 0 && j != 0)
 						dataGridView2->Rows->RemoveAt(dataGridView2->CurrentRow->Index);
 					}
 				}
@@ -1186,8 +1215,43 @@ private: System::Void btnEdit_Click(System::Object^  sender, System::EventArgs^ 
 {
 	if (dataGridView2->Rows->Count > 0)
 	{
-
+		
+		EditarOrden^form = gcnew EditarOrden(Convert::ToInt32(dataGridView2->CurrentRow->Cells[0]->Value));
+		form->Show();
+		
+		
 	}
+}
+private: System::Void Ordenes_MdiChildActivate(System::Object^  sender, System::EventArgs^  e) 
+{
+	
+}
+private: System::Void timer1_Tick(System::Object^  sender, System::EventArgs^  e) 
+{
+	
+}
+private: System::Void timer1_Tick_1(System::Object^  sender, System::EventArgs^  e) 
+{
+	
+}
+private: System::Void Ordenes_MouseClick(System::Object^  sender, System::Windows::Forms::MouseEventArgs^  e) 
+{
+
+}
+private: System::Void button4_Click(System::Object^  sender, System::EventArgs^  e) 
+{
+	Actualizar_DGV();
+	TBcliente->Text = "";
+	TBcel->Text = "";
+	checkBox1->Checked = true;
+	TBdireccion->Text = "";
+	richTBcomment->Text = "";
+	textBox1->Text = "";
+	checkBox3->Checked = false;
+	CBB2->SelectedIndex = 0;
+	textBox5->Text = "";
+	dataGridView1->Rows->Clear();
+	
 }
 };
 }
